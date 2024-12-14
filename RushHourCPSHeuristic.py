@@ -91,24 +91,82 @@ def control_traffic_lights():
                         if waiting_time > 0:
                             vehicles_waiting_red += 1
 
-                # Adjust phase duration based on vehicle counts
-                if vehicles_waiting_red > vehicles_waiting_green:
-                    # More vehicles waiting on red lanes (cross traffic)
-                    min_duration = 5  # Minimum phase duration in seconds
-                    if current_phase_remaining > min_duration:
-                        traci.trafficlight.setPhaseDuration(tl_id, min_duration)
-                elif vehicles_waiting_green > vehicles_waiting_red:
-                    # More vehicles on green lanes
-                    max_duration = 60  # Maximum phase duration in seconds
-                    if current_phase_remaining < max_duration:
-                        traci.trafficlight.setPhaseDuration(tl_id, max_duration)
-                else:
-                    # Equal number of vehicles or no vehicles waiting
-                    # Optionally, set to default duration or do nothing
-                    pass
+
+                '''
+                Adjust phase duration as appropriate by number of idle vehicles or whether it is morning/afternoon
+                rush hour. 
+                '''
+                timeOfDay = "morning_RH"
+
+                if timeOfDay == "morning_RH":
+
+                    if vehicles_waiting_red > vehicles_waiting_green:
+
+                        # More vehicles waiting on red
+                        min_duration = 5
+                        if current_phase_remaining > min_duration:
+                            traci.trafficlight.setPhaseDuration(tl_id, min_duration)
+
+                    elif vehicles_waiting_green > vehicles_waiting_red:
+                        # More vehicles on green
+                        max_duration = 60
+                        if current_phase_remaining < max_duration:
+                            traci.trafficlight.setPhaseDuration(tl_id, max_duration)
+
+                    timeOfDay = "noon"
+
+                elif timeOfDay == "noon":
+                    if vehicles_waiting_red > vehicles_waiting_green:
+
+                        # More vehicles waiting on red
+                        min_duration = 5
+                        if current_phase_remaining > min_duration:
+                            traci.trafficlight.setPhaseDuration(tl_id, min_duration)
+
+                    elif vehicles_waiting_green > vehicles_waiting_red:
+                        # More vehicles on green
+                        max_duration = 60
+                        if current_phase_remaining < max_duration:
+                            traci.trafficlight.setPhaseDuration(tl_id, max_duration)
+
+                    timeOfDay = "afternoon_RH"
 
 
-            # Update simulation time
+                elif timeOfDay == "afternoon_RH":
+                    if vehicles_waiting_red > vehicles_waiting_green:
+                        # More vehicles waiting on red
+                        min_duration = 5
+                        if current_phase_remaining > min_duration:
+                            traci.trafficlight.setPhaseDuration(tl_id, min_duration)
+
+                    elif vehicles_waiting_green > vehicles_waiting_red:
+                        # More vehicles on green
+                        max_duration = 60
+                        if current_phase_remaining < max_duration:
+                            traci.trafficlight.setPhaseDuration(tl_id, max_duration)
+
+                    timeOfDay = "evening"
+
+
+                elif timeOfDay == "noon":
+                    if vehicles_waiting_red > vehicles_waiting_green:
+                        # More vehicles waiting on red
+                        min_duration = 5
+                        if current_phase_remaining > min_duration:
+                            traci.trafficlight.setPhaseDuration(tl_id, min_duration)
+
+                    elif vehicles_waiting_green > vehicles_waiting_red:
+
+                        # More vehicles on green
+                        max_duration = 60
+                        if current_phase_remaining < max_duration:
+                            traci.trafficlight.setPhaseDuration(tl_id, max_duration)
+
+                    timeOfDay = "morning_RH"
+
+
+
+                    # Update simulation time
             current_time = traci.simulation.getTime()
 
         # After the simulation ends, calculate average idle time
