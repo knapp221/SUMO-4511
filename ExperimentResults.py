@@ -4,13 +4,13 @@ import matplotlib.pyplot as plt
 traffic_levels = ["Light", "Medium", "Medium1500", "Heavy", "Intense"]
 
 # Example data for 3 heuristics (extend similarly for all 6)
-Boolean = [12, 25, 110]
-PSHeuristic = [10, 22, 110]
-CPSHeuristic = [8, 20, 110]
-MyHeuristicW0 = [8, 20, 110]
-MyHeuristicW05 = [8, 20, 110]
-MyHeuristicW1 = [8, 20, 110]
-MyHeuristicW2 = [8, 20, 110]
+Boolean = [ 27.43 , 78.46 , None , None , None ]
+PSHeuristic = [ 13.31 , 35.02 , 60.00 , None, None ]
+CPSHeuristic = [ 13.03 , 21.34 , 21.62 , 54.79 , 130.51 ]
+MyHeuristicW0 = [ 9.54 , 20.46 , 21.90 , 50.24 , 127.19 ]
+MyHeuristicW05 = [ 8.31 , 19.24 , 20.31 , 50.29 , 122.75 ]
+MyHeuristicW1 = [ 8.95 , 21.07 , 21.41 , 47.51 , 121.39 ]
+MyHeuristicW2 = [ 11.82 , 24.20 , 25.09 , 54.69 , 127.25 ]
 
 
 plt.plot(traffic_levels, Boolean, marker='o', label='Boolean Circuit')
