@@ -93,6 +93,9 @@ def control_traffic_lights():
                         ry_lanes.append(lane_id)
 
 
+                '''
+                Count idle and non-idle vehicles along oncoming intersection lanes.
+                '''
                 # Count all oncoming vehicles from current green phase
                 idle_green = 0
                 non_idle_green = 0
@@ -122,7 +125,7 @@ def control_traffic_lights():
                 Adjust phase duration according to a greedy choice. A weight W can be assigned to the idle vehicles
                 since they are technically more important.
                 '''
-                if primitive_greedy_traffic_search(0.5, idle_green, non_idle_green, idle_red, non_idle_red):
+                if primitive_greedy_traffic_search(0.0, idle_green, non_idle_green, idle_red, non_idle_red):
                     max_duration = 60
                     if current_phase_remaining < max_duration:
                         traci.trafficlight.setPhaseDuration(tl_id, max_duration)

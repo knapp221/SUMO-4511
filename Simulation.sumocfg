@@ -6,8 +6,8 @@
         <route-files value="3x3.rou.xml"/>
     </input>
 	<time>
-        <begin value="4000"/>
-        <end value="5000"/>
+        <begin value="6000"/>
+        <end value="7000"/>
     </time>
     <time-to-teleport value="-1"/> <!-- If the value is not positive, teleporting due to grid-lock is disabled.-->
 </configuration>
