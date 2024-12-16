@@ -4,14 +4,18 @@
 # December2024
 
 '''
-The skeleton of this code is made from CPSHeuristic.py which was made by GAI (Generative AI). The changes made from
-CPSHeuristic.py are my own creation.
+GAI NOTE: PARTS OF THE CODE IN THIS PYTHON FILE WERE PROVIDED BY A GAI; CHATGPT, ACCESSED NOVEMBER 2024.
+AND ARE A PROGRESSION FROM CPSHEURISTIC.PY. I DO NOT TAKE CREDIT FOR ITS CREATION, WITH EXCEPTION TO
+primitive_astar_traffic_search.
 '''
 
 import traci
 import traci.constants as tc
 
-def primitive_greedy_traffic_search(W, green_idle, green_non_idle, red_idle, red_non_idle):
+'''
+The beginning of an algorithm which takes the form of a weighted A* search f(n) = g(n) + Wh(n)
+'''
+def primitive_astar_traffic_search(W, green_idle, green_non_idle, red_idle, red_non_idle):
     ps_extend = green_idle + (W * green_non_idle)
     ps_shorten = red_idle + (W * red_non_idle)
     return ps_extend > ps_shorten
@@ -122,10 +126,9 @@ def control_traffic_lights():
 
 
                 '''
-                Adjust phase duration according to a greedy choice. A weight W can be assigned to the idle vehicles
-                since they are technically more important.
+                Adjust phase duration. A weight W can be assigned to the non-idle vehicles to calibrate.
                 '''
-                if primitive_greedy_traffic_search(0.0, idle_green, non_idle_green, idle_red, non_idle_red):
+                if primitive_astar_traffic_search(0.5, idle_green, non_idle_green, idle_red, non_idle_red):
                     max_duration = 60
                     if current_phase_remaining < max_duration:
                         traci.trafficlight.setPhaseDuration(tl_id, max_duration)

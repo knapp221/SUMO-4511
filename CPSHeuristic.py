@@ -1,3 +1,8 @@
+'''
+GAI NOTE: MOST OF THE CODE IN THIS PYTHON FILE WERE PROVIDED BY A GAI; CHATGPT, ACCESSED NOVEMBER 2024.
+THE CODE HAS BEEN UTILIZED AND WORKS AS INTENDED, BUT I DO NOT TAKE ANY CREDIT FOR ITS CREATION.
+'''
+
 import traci
 import traci.constants as tc
 
@@ -103,8 +108,6 @@ def control_traffic_lights():
                     if current_phase_remaining < max_duration:
                         traci.trafficlight.setPhaseDuration(tl_id, max_duration)
                 else:
-                    # Equal number of vehicles or no vehicles waiting
-                    # Optionally, set to default duration or do nothing
                     pass
 
 
