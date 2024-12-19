@@ -9,7 +9,7 @@ University of Minnesota
 How to use:
 The following repository was designed to be used with Simulation of Urban MObility (SUMO) and executed from the command line in Linux.
 
-Therefore, in order to run any simulations from this repository, the following dependencies will be required:
+Therefore, in order to run any simulations from this repository, there are the following dependencies:
 SUMO - Be sure to add it to PATH.
 Python 3 - Python 3.12 specifically was used for this project environment.
 TraCI - SUMO doesn't always come with TraCI installed, but should be contained in the sumo-tools installation.
@@ -20,15 +20,17 @@ SUMO is installed, but the import appears to be missing.
 sudo apt-get install sumo sumo-tools sumo-doc 
 
 Once all dependencies are set up, the python files can be ran, and should automatically open SUMO when executed. 
-For example typing the following into command line:
+However, you will need to change the PATH at the top of each python file to match where Simulation.sumocfg and the
+.xml files are located. Don't forget to add /Simulation.sumocfg at the end of the path or SUMO will not open. 
+Once setup, typing the following into command line:
 
 python3 MyHeuristic.py
 
-Should open the SUMO simulation environment. Pressing the run button will run the simulation
+Should open the SUMO simulation environment. Pressing the run button at the top will run the simulation
 beginning at timestep 0 and will end on timestep 1000, as per the Simulation.sumocfg file. Feel
 free to modify the start and end times of the simulation, though the .rou.xml vehicle behavior
-only works as intended until timestep 7000. It is also recommended to add at least 30ms of delay
-for CPSHeuristic.py and MyHeuristic.py.
+only works as intended until timestep 7000. It is also recommended to add delay for visualization
+purposes, but this isn't necessary.
 
 
 

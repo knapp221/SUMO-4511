@@ -49,23 +49,7 @@ def control_traffic_lights():
             arrived_vehicles = traci.simulation.getArrivedIDList()
             for veh_id in arrived_vehicles:
                 departed_vehicles.add(veh_id)
-            '''
-            # Example of manipulating traffic lights
-            for tl_id in traffic_light_ids:
-                # Get current traffic light phase
-                current_phase = traci.trafficlight.getPhase(tl_id)
 
-                # Retrieve the traffic light's program logic
-                logic = traci.trafficlight.getAllProgramLogics(tl_id)[0]
-                phases = logic.getPhases()
-                num_phases = len(phases)
-
-                # Custom logic: Change to the next phase every 30 seconds
-                if current_time % 30 == 0:
-                    # Switch to the next phase
-                    next_phase = (current_phase + 1) % num_phases
-                    traci.trafficlight.setPhase(tl_id, next_phase)
-            '''
             # Update simulation time
             current_time = traci.simulation.getTime()
 
